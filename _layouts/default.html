@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title and page.url != "/" %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+
+<!-- Computer Modern (the LaTeX face). Falls back to Charter/Georgia if the CDN dies. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/computer-modern@0.1.2/index.css">
+
+{% if page.math %}
+<!-- loaded only on pages with `math: true` in the front matter -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[
+          {left:'$$',right:'$$',display:true},
+          {left:'$',right:'$',display:false}]})"></script>
+{% endif %}
+
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+
+<body>
+<div class="page">
+
+  <aside class="rail">
+    <a class="name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <p class="tagline">{{ site.tagline }}</p>
+
+    <nav>
+      {% for item in site.nav %}
+        <a href="{{ item.url | relative_url }}"
+           class="{% if page.url contains item.url %}here{% endif %}">{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="rail-foot">
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
+      <a href="https://github.com/{{ site.github }}">github</a>
+    </div>
+  </aside>
+
+  <main>
+    {{ content }}
+  </main>
+
+</div>
+
+<!--
+  ANALYTICS (private, nothing renders on the page)
+  Sign up at goatcounter.com, replace YOURCODE below, then in Settings turn OFF
+  public statistics. To stop counting yourself, visit any page with
+  #toggle-goatcounter on the end, once per browser.
+-->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

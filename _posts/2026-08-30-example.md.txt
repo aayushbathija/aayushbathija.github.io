@@ -1,0 +1,22 @@
+---
+layout: post
+title: A title goes here
+date: 2026-08-30
+math: true
+---
+
+Write the post in Markdown. **Bold**, *italic*, [links](https://example.com),
+lists, code blocks, all of it works. The title and date at the top get rendered
+for you, so don't repeat them here.
+
+Math needs `math: true` in the front matter, then $e^{i\pi} + 1 = 0$ inline, or
+
+$$\sum_{k=0}^{n} \binom{n}{k} = 2^n$$
+
+on its own line.
+
+---
+
+To publish this: rename the file to drop the `.txt` so it ends in `.md`. The
+name has to be `YYYY-MM-DD-some-slug.md` or Jekyll ignores it. It'll appear on
+the Blog page on its own.
