@@ -200,10 +200,15 @@ footer svg {
   h1 { font-size: 1.8rem; }
 }
 
+.page { position: relative; }
+
 .margin-figure {
-  float: right;
-  width: 15rem;
-  margin: .2rem 0 1.2rem 2.5rem;
+  position: absolute;
+  top: 8.8rem;
+  right: 2.5rem;
+  width: 13rem;
+  margin: 0;
+  float: none;
 }
 
 .margin-figure img {
@@ -212,11 +217,12 @@ footer svg {
   display: block;
 }
 
-.margin-figure figcaption {
-  font-size: .72rem;
-  line-height: 1.4;
-  color: var(--ink-soft);
-  margin-top: .4rem;
+@media (max-width: 58rem) {
+  .margin-figure {
+    position: static;
+    width: 9rem;
+    margin: 0 0 1.5rem;
+  }
 }
 
 @media (max-width: 40rem) {
