@@ -18,4 +18,4 @@ interested in.
 
 **President, Philosophy Club.**
 
-If you want any of the handouts, [email me](mailto:you@example.com).
+If you want any of the handouts, [email me](mailto:bathija.aayush@gmail.com).

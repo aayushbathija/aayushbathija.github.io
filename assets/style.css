@@ -30,8 +30,16 @@ body {
 .page {
   max-width: 60rem;
   margin: 0 auto;
-  padding: 3rem 2.5rem 5rem;
+  padding: 2.5rem 2.5rem 2rem;
+
+  /* pins the footer to the bottom of the window on short pages, instead of
+     leaving it floating halfway up */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+main { flex: 1 0 auto; }
 
 /* ---- masthead ---- */
 
@@ -157,7 +165,7 @@ a[href="#"], a[href^="mailto:you@example.com"] {
 /* ---- footer ---- */
 
 footer {
-  margin-top: 4.5rem;
+  margin-top: 3rem;
   padding-top: 1rem;
   border-top: 1px solid var(--rule);
   font-family: var(--sans);
@@ -170,7 +178,7 @@ footer a { border-bottom-color: rgba(24,79,149,.3); }
 
 @media (max-width: 44rem) {
   body { font-size: 18px; }
-  .page { padding: 2.5rem 1.4rem 4rem; }
+  .page { padding: 2.2rem 1.4rem 1.5rem; }
   .masthead { display: block; }
   .name { font-size: 1.5rem; display: block; margin-bottom: .7rem; }
   .masthead nav { gap: .2rem 1.1rem; }
