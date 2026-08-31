@@ -1,10 +1,10 @@
 :root {
-  --paper: #ffffff;
+  --paper: #FAF8F3;
   --ink: #000000;
   --ink-soft: #4a4a4a;
   --blue: #184F95;
   --wash: #CDE2FB;
-  --rule: #d8d8d4;
+  --rule: #ddd9d0;
 
   --serif: "Computer Modern Serif", Charter, Georgia, "Times New Roman", serif;
   --sans: "Computer Modern Sans", "Helvetica Neue", Arial, sans-serif;
@@ -116,12 +116,12 @@ blockquote {
 
 code {
   font-size: .88em;
-  background: #f4f4f2;
+  background: #F1EDE4;
   padding: .1em .3em;
   border-radius: 2px;
 }
 pre {
-  background: #f4f4f2;
+  background: #F1EDE4;
   padding: .9rem 1.1rem;
   overflow-x: auto;
 }
@@ -172,9 +172,22 @@ footer {
   font-size: .85rem;
   color: var(--ink-soft);
   display: flex;
-  gap: 1.4rem;
+  gap: .5rem 1.5rem;
+  flex-wrap: wrap;
 }
-footer a { border-bottom-color: rgba(24,79,149,.3); }
+footer a {
+  border-bottom-color: rgba(24,79,149,.3);
+  display: inline-flex;
+  align-items: center;
+  gap: .35em;
+}
+
+footer svg {
+  width: 1.05em;
+  height: 1.05em;
+  fill: currentColor;
+  flex: none;
+}
 
 @media (max-width: 44rem) {
   body { font-size: 18px; }

@@ -6,6 +6,7 @@ tagline: >-
 
 email: bathija.aayush@gmail.com
 github: aayushbathija
+linkedin: https://www.linkedin.com/in/aayush-bathija-718ba8382/
 youtube_math: https://www.youtube.com/@Academic-Learning
 youtube_philosophy: https://www.youtube.com/@BeggingTheQuestion-j5i
 
@@ -17,8 +18,8 @@ nav:
     url: /teaching/
   - title: Writing
     url: /writing/
-  - title: Reading
-    url: /reading/
+  - title: Background
+    url: /Background/
   - title: Blog
     url: /blog/
 
