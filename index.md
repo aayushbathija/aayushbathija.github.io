@@ -18,5 +18,5 @@ philosophy when a book warrants it.
 If you have any questions or requests for code, writups, etc. Or just want to chat, the best way to reach me is by email.
 
 <figure class="margin-figure">
-  <img src="{{ '/assets/Scrumbled_Rubik's_Cube.jpg' | relative_url }}" alt="A scrambled Rubik's cube">
+  <img src="{{ '/assets/cube.jpg' | relative_url }}" alt="A scrambled Rubik's cube">
 </figure>
