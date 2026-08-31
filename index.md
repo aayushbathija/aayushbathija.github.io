@@ -10,7 +10,7 @@ In terms of interest, I organize my life around truth. Thus, I take logical thin
 
 At a more general intersection, I spend my free time going into social science: specifically voting-systems, history/politics, and economics. 
 
-As for hobbies, you can catch me solving [Rubik's Cubes] (https://www.worldcubeassociation.org/persons/2019BATH02), tinkering with linux,and debating with friends.
+As for hobbies, you can catch me solving [Rubik's Cubes](https://www.worldcubeassociation.org/persons/2019BATH02), tinkering with linux,and debating with friends.
 
 I also make [expository videos](https://www.youtube.com/@Academic-Learning) about whatever I'm reading, and write about
 philosophy when a book warrants it.
