@@ -18,75 +18,67 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.62;
+  font-size: 20px;
+  line-height: 1.6;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
 }
 
+/* the shell is wide; the text column inside it is not, because a 1200px line
+   of serif is unreadable. the rules span the full width so the page still
+   feels used. */
 .page {
-  max-width: 56rem;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 4.5rem 1.5rem 5rem;
-  display: grid;
-  grid-template-columns: 13rem 1fr;
-  gap: 4rem;
-  align-items: start;
+  padding: 3rem 2.5rem 5rem;
 }
 
-/* ---- sidebar ---- */
+/* ---- masthead ---- */
 
-.rail { position: sticky; top: 4.5rem; }
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .6rem 2rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
 
 .name {
-  display: block;
-  font-size: 1.5rem;
-  line-height: 1.2;
+  font-size: 1.6rem;
+  line-height: 1.1;
   color: var(--ink);
   border: none;
-  margin-bottom: .5rem;
+  white-space: nowrap;
 }
 .name:hover { color: var(--blue); }
 
-.tagline {
-  font-size: .88rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  margin: 0 0 1.6rem;
+.masthead nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem 1.6rem;
 }
 
-.rail nav { display: flex; flex-direction: column; gap: .1rem; }
-
-.rail nav a {
+.masthead nav a {
   font-family: var(--sans);
-  font-size: .92rem;
+  font-size: .95rem;
   color: var(--ink-soft);
   border: none;
-  padding: .16rem .35rem;
-  margin-left: -.35rem;
-  width: fit-content;
+  padding: .1rem .4rem;
 }
-.rail nav a:hover { color: var(--ink); }
+.masthead nav a:hover { color: var(--ink); }
 
 /* the signature: current page sits on the pale wash from your subtitles */
-.rail nav a.here { color: var(--ink); background: var(--wash); }
-
-.rail-foot {
-  margin-top: 1.8rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-  font-size: .85rem;
-  color: var(--ink-soft);
-  line-height: 1.7;
-}
-.rail-foot a { border-bottom-color: rgba(24,79,149,.3); }
+.masthead nav a.here { color: var(--ink); background: var(--wash); }
 
 /* ---- content ---- */
 
-main { min-width: 0; }
+main { max-width: 38rem; }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 400;
   line-height: 1.15;
   margin: 0 0 1.4rem;
@@ -95,22 +87,21 @@ h1 {
 
 h2 {
   font-family: var(--sans);
-  font-size: .95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--blue);
-  margin: 2.4rem 0 .7rem;
+  margin: 2.6rem 0 .7rem;
 }
 
-p, li { max-width: 34rem; }
-p { margin: 0 0 1.1rem; }
+p { margin: 0 0 1.15rem; }
 
-main ul { padding-left: 1.1rem; margin: 0 0 1.1rem; }
+main ul { padding-left: 1.1rem; margin: 0 0 1.15rem; }
 main li { margin-bottom: .5rem; }
 main li::marker { color: var(--rule); }
 
 blockquote {
-  margin: 1.4rem 0;
-  padding-left: 1.1rem;
+  margin: 1.5rem 0;
+  padding-left: 1.2rem;
   border-left: 2px solid var(--wash);
   color: var(--ink-soft);
 }
@@ -125,11 +116,10 @@ pre {
   background: #f4f4f2;
   padding: .9rem 1.1rem;
   overflow-x: auto;
-  max-width: 34rem;
 }
 pre code { background: none; padding: 0; }
 
-hr { border: none; border-top: 1px solid var(--rule); margin: 2.4rem 0; }
+hr { border: none; border-top: 1px solid var(--rule); margin: 2.6rem 0; }
 
 a {
   color: var(--blue);
@@ -144,55 +134,47 @@ a:focus-visible {
 }
 
 /* placeholder links, deliberately ugly so you can't ship them by accident.
-   write [text](real-url) instead, and the red goes away */
+   write [text](real-url) instead and the red goes away */
 a[href="#"], a[href^="mailto:you@example.com"] {
   color: #a33;
   border-bottom: 1px dashed #a33;
-}
-
-/* ---- post list ---- */
-
-.posts { list-style: none; padding: 0; margin: 0; }
-.posts li { margin-bottom: 1.3rem; max-width: 34rem; }
-.posts time { display: block; font-size: .85rem; color: var(--ink-soft); }
-.empty { color: var(--ink-soft); font-style: italic; }
-
-@media (max-width: 46rem) {
-  body { font-size: 18px; }
-
-  .page {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding-top: 3rem;
-  }
-
-  /* the sidebar's parts become grid items of their own, so the contact block
-     can drop below the content instead of shoving it down the page */
-  .rail { display: contents; }
-
-  .name    { order: 1; }
-  .tagline { order: 2; max-width: 32rem; margin-bottom: 1.2rem; }
-
-  .rail nav {
-    order: 3;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: .1rem 1rem;
-    padding-top: 1rem;
-    margin-bottom: 2.2rem;
-    border-top: 1px solid var(--rule);
-  }
-
-  main { order: 4; }
-
-  .rail-foot { order: 5; margin-top: 3rem; }
-
-  h1 { font-size: 1.7rem; }
 }
 
 .post-date {
   font-family: var(--sans);
   font-size: .85rem;
   color: var(--ink-soft);
-  margin: -0.9rem 0 1.6rem;
+  margin: -0.9rem 0 1.7rem;
+}
+
+/* ---- post list ---- */
+
+.posts { list-style: none; padding: 0; margin: 0; }
+.posts li { margin-bottom: 1.4rem; }
+.posts time { display: block; font-size: .85rem; color: var(--ink-soft); }
+.empty { color: var(--ink-soft); font-style: italic; }
+
+/* ---- footer ---- */
+
+footer {
+  margin-top: 4.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: .85rem;
+  color: var(--ink-soft);
+  display: flex;
+  gap: 1.4rem;
+}
+footer a { border-bottom-color: rgba(24,79,149,.3); }
+
+@media (max-width: 44rem) {
+  body { font-size: 18px; }
+  .page { padding: 2.5rem 1.4rem 4rem; }
+  .masthead { display: block; }
+  .name { font-size: 1.5rem; display: block; margin-bottom: .7rem; }
+  .masthead nav { gap: .2rem 1.1rem; }
+  .masthead nav a { padding-left: 0; }
+  .masthead nav a.here { padding-left: .4rem; }
+  h1 { font-size: 1.8rem; }
 }

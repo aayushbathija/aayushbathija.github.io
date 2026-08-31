@@ -25,26 +25,24 @@
 <body>
 <div class="page">
 
-  <aside class="rail">
+  <header class="masthead">
     <a class="name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <p class="tagline">{{ site.tagline }}</p>
-
     <nav>
       {% for item in site.nav %}
         <a href="{{ item.url | relative_url }}"
            class="{% if page.url contains item.url %}here{% endif %}">{{ item.title }}</a>
       {% endfor %}
     </nav>
-
-    <div class="rail-foot">
-      <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
-      <a href="https://github.com/{{ site.github }}">github</a>
-    </div>
-  </aside>
+  </header>
 
   <main>
     {{ content }}
   </main>
+
+  <footer>
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <a href="https://github.com/{{ site.github }}">github</a>
+  </footer>
 
 </div>
 
