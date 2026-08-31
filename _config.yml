@@ -22,6 +22,8 @@ nav:
     url: /background/
   - title: Blog
     url: /blog/
+  - title: CV
+    url: /cv/
 
 permalink: /:title/
 markdown: kramdown
