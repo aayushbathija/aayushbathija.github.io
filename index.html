@@ -6,7 +6,7 @@
 <title>Aayush Bathija</title>
 <meta name="description" content="Aayush Bathija — mathematics, teaching, and writing.">
 
-<!-- Computer Modern (the LaTeX face). If this CDN ever dies the page falls back to Charter/Georgia and still looks right. -->
+<!-- Computer Modern (the LaTeX face). Falls back to Charter/Georgia if the CDN dies. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/computer-modern@0.1.2/index.css">
 
 <style>
@@ -16,14 +16,13 @@
     --ink-soft: #4a4a4a;
     --blue: #184F95;
     --wash: #CDE2FB;
-    --rule: #dcdcd8;
+    --rule: #d8d8d4;
 
     --serif: "Computer Modern Serif", Charter, Georgia, "Times New Roman", serif;
     --sans: "Computer Modern Sans", "Helvetica Neue", Arial, sans-serif;
   }
 
   * { box-sizing: border-box; }
-
   html { -webkit-text-size-adjust: 100%; }
 
   body {
@@ -38,12 +37,10 @@
   }
 
   .sheet {
-    max-width: 40rem;
+    max-width: 42rem;
     margin: 0 auto;
     padding: 5.5rem 1.5rem 4rem;
   }
-
-  /* ---- masthead ---- */
 
   .title {
     font-size: 2.6rem;
@@ -56,17 +53,12 @@
   .standfirst {
     font-size: 1.06rem;
     color: var(--ink-soft);
-    margin: 0 0 2.2rem;
+    margin: 0 0 2.6rem;
     max-width: 34rem;
   }
 
-  /* the one place the design raises its voice: the highlight Aayush uses in his
-     own subtitles, drawn in once on load */
-  .mark {
-    position: relative;
-    color: var(--ink);
-    white-space: nowrap;
-  }
+  /* the one loud moment: the highlight from your subtitle style, drawn once */
+  .mark { position: relative; color: var(--ink); white-space: nowrap; }
   .mark::before {
     content: "";
     position: absolute;
@@ -83,48 +75,59 @@
     .mark::before { animation: none; transform: scaleX(1); }
   }
 
-  /* ---- sections, set like a paper ---- */
-
-  section { margin: 0 0 2.9rem; }
+  section { margin: 0 0 3rem; }
 
   h2 {
     font-family: var(--sans);
     font-size: .95rem;
     font-weight: 700;
-    letter-spacing: .01em;
     color: var(--blue);
-    margin: 0 0 .7rem;
+    margin: 0 0 .8rem;
   }
 
-  p { margin: 0 0 1rem; }
+  p { margin: 0 0 1rem; max-width: 34rem; }
   p:last-child { margin-bottom: 0; }
 
-  ul { margin: 0; padding: 0; list-style: none; }
+  /* ---- tables, set the way LaTeX booktabs does it:
+         horizontal rules only, no verticals, no zebra stripes ---- */
 
-  li {
-    margin: 0 0 1.05rem;
-    padding-left: 1.1rem;
-    position: relative;
-  }
-  li:last-child { margin-bottom: 0; }
-  li::before {
-    content: "—";
-    position: absolute;
-    left: 0;
-    color: var(--rule);
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .95rem;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
   }
 
-  .role { display: block; }
-  .where { color: var(--ink-soft); }
-  .note {
-    display: block;
+  thead th {
+    font-family: var(--sans);
+    font-size: .78rem;
+    font-weight: 700;
     color: var(--ink-soft);
-    font-size: .93rem;
-    line-height: 1.5;
-    margin-top: .12rem;
+    text-align: left;
+    padding: .45rem 1.2rem .45rem 0;
+    border-bottom: 1px solid var(--ink);
   }
 
-  /* ---- links ---- */
+  td {
+    padding: .7rem 1.2rem .7rem 0;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.45;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td:last-child, th:last-child { padding-right: 0; }
+
+  td.what { white-space: nowrap; }
+  td.detail { color: var(--ink-soft); }
+
+  caption {
+    caption-side: bottom;
+    text-align: left;
+    font-size: .85rem;
+    color: var(--ink-soft);
+    padding-top: .6rem;
+  }
 
   a {
     color: var(--blue);
@@ -138,15 +141,10 @@
     border-radius: 1px;
   }
 
-  /* placeholder links — deliberately ugly so you can't ship them by accident.
-     delete the class once the href is real. */
-  a.todo {
-    color: #a33;
-    border-bottom: 1px dashed #a33;
-  }
-  a.todo::after { content: " ↯"; font-size: .8em; }
-
-  /* ---- footer ---- */
+  /* placeholder links, deliberately ugly so you can't ship them by accident.
+     fill in the href, then delete class="todo" */
+  a.todo { color: #a33; border-bottom: 1px dashed #a33; }
+  a.todo::after { content: " \21AF"; font-size: .8em; }
 
   footer {
     margin-top: 4rem;
@@ -154,17 +152,24 @@
     border-top: 1px solid var(--rule);
     font-size: .9rem;
     color: var(--ink-soft);
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem 1.4rem;
-    justify-content: space-between;
-    align-items: baseline;
   }
 
-  @media (max-width: 34rem) {
+  /* tables become stacked blocks on a phone, since three columns at 380px
+     is unreadable */
+  @media (max-width: 36rem) {
     body { font-size: 18px; }
     .sheet { padding-top: 3.5rem; }
     .title { font-size: 2.05rem; }
+
+    table, tbody, tr, td { display: block; width: 100%; }
+    thead { position: absolute; left: -9999px; }
+    tr {
+      padding: .8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    td { border: none; padding: 0 0 .15rem; }
+    td.what { white-space: normal; font-weight: 700; }
   }
 </style>
 </head>
@@ -182,102 +187,120 @@
   <section>
     <h2>Research</h2>
     <p>
-      With Professor Soskin I&rsquo;ve been extending results on Lorentzian
-      polynomials to the degree-3 case, working on a question about transversal
-      cones. Lorentzian polynomials sit between combinatorics and convex
-      geometry: log-concavity statements that are hard to prove by counting
-      arguments fall out of them fairly cleanly.
+      With Professor Soskin I&rsquo;ve been pushing results on Lorentzian
+      polynomials into the degree-3 case, aimed at a question about transversal
+      cones. The appeal is that log-concavity statements which resist direct
+      counting arguments come out of the theory fairly cleanly.
     </p>
     <p>
-      Notes and a writeup are
-      <a class="todo" href="#">here</a>.
+      Notes and a writeup are <a class="todo" href="#">here</a>.
     </p>
   </section>
 
   <section>
     <h2>Teaching</h2>
-    <ul>
-      <li>
-        <span class="role">Instructor, <span class="where">UCLA Olga Radko Math Circle</span></span>
-        <span class="note">Weekly sessions with elementary and middle school students.</span>
-      </li>
-      <li>
-        <span class="role">Documentation, <span class="where">Agoura Math Circle</span></span>
-        <span class="note">
-          One of six people maintaining the curriculum and handout archive; I also
-          wrote the scripts that migrated it.
-        </span>
-      </li>
-      <li>
-        <span class="role">Founder, <span class="where">pure mathematics club at my school</span></span>
-        <span class="note">
-          Proof-based material for students who&rsquo;ve run out of competition
-          problems to be interested in.
-        </span>
-      </li>
-      <li>
-        <span class="role">President, <span class="where">Philosophy Club</span></span>
-      </li>
-    </ul>
+    <table>
+      <thead>
+        <tr><th scope="col">Role</th><th scope="col">Where</th><th scope="col">What</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="what">Instructor</td>
+          <td>UCLA Olga Radko Math Circle</td>
+          <td class="detail">Weekly sessions for elementary and middle school students.</td>
+        </tr>
+        <tr>
+          <td class="what">Documentation</td>
+          <td>Agoura Math Circle</td>
+          <td class="detail">One of six maintaining the curriculum archive. I wrote the scripts that migrated it.</td>
+        </tr>
+        <tr>
+          <td class="what">Founder</td>
+          <td>Pure mathematics club</td>
+          <td class="detail">Proof-based material for students who&rsquo;ve run out of competition problems to be interested in.</td>
+        </tr>
+        <tr>
+          <td class="what">President</td>
+          <td>Philosophy Club</td>
+          <td class="detail">Weekly discussion, mostly ethics and epistemology.</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
-    <h2>Writing and video</h2>
-    <p>
-      I make expository videos, mostly working through material I&rsquo;m reading
-      at the time: the failure of the parallel postulate on the sphere, and a
-      chapter-by-chapter series on Tao&rsquo;s <em>Analysis&nbsp;I</em>.
-      <a class="todo" href="#">The channel is here.</a>
-    </p>
-    <p>
-      I also write about philosophy, currently a commentary series on the
-      <em>Republic</em>. <a class="todo" href="#">Essays and videos.</a>
-    </p>
+    <h2>Video and writing</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Series</th><th scope="col">Subject</th><th scope="col">Link</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="what">Non-Euclidean geometry</td>
+          <td class="detail">Hilbert&rsquo;s axioms, and where neutral geometry fails on the sphere.</td>
+          <td><a class="todo" href="#">watch</a></td>
+        </tr>
+        <tr>
+          <td class="what"><em>Analysis&nbsp;I</em></td>
+          <td class="detail">Chapter-by-chapter through Tao, as I read it.</td>
+          <td><a class="todo" href="#">watch</a></td>
+        </tr>
+        <tr>
+          <td class="what">Philosophy commentary</td>
+          <td class="detail">Currently the <em>Republic</em>, a book or two at a time.</td>
+          <td><a class="todo" href="#">watch</a></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
-    <h2>Reading</h2>
-    <p>
-      Tao&rsquo;s <em>Analysis&nbsp;I</em>, and a ring theory course with
-      Mirroslav Yotov that I&rsquo;m using as an on-ramp to algebraic number
-      theory. Before that, the standard calculus and linear algebra sequence.
-    </p>
-  </section>
-
-  <section>
-    <h2>Elsewhere</h2>
-    <p>
-      AIME qualifier. Shortlisted in the John Locke essay competition.
-      <a class="todo" href="#">GitHub</a>.
-    </p>
+    <h2>Coursework and reading</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Subject</th><th scope="col">Source</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="what">Real analysis</td>
+          <td class="detail">Tao, <em>Analysis&nbsp;I</em> (3rd ed.), self-study</td>
+        </tr>
+        <tr>
+          <td class="what">Ring theory</td>
+          <td class="detail">Course with Mirroslav Yotov, as an on-ramp to algebraic number theory</td>
+        </tr>
+        <tr>
+          <td class="what">Calculus, linear algebra</td>
+          <td class="detail">Dual enrollment</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <footer>
-    <span><a class="todo" href="mailto:you@example.com">email</a></span>
+    AIME qualifier. Shortlisted, John Locke essay competition.
+    <a class="todo" href="mailto:you@example.com">Email</a> &middot;
+    <a class="todo" href="#">GitHub</a>
   </footer>
 
 </main>
 
 <!--
-  ANALYTICS (private — nothing renders on the page)
-  ------------------------------------------------
-  Numbers live in your GoatCounter dashboard, not here. Free, no cookies, no
-  consent banner.
+  ANALYTICS (private, nothing renders on the page)
+  -----------------------------------------------
+  Numbers live in your GoatCounter dashboard. Free, no cookies, no consent banner.
 
   SETUP
   1. Sign up at goatcounter.com, pick a code (e.g. "aayush"), replace YOURCODE below.
-  2. Settings -> Site settings: turn OFF "public statistics" so only you can
-     see the dashboard.
+  2. Settings -> Site settings: turn OFF public statistics so only you see the dashboard.
 
   EXCLUDING YOURSELF
-  - Visit yoursite.com/#toggle-goatcounter once in each browser you use. That
-    sets a flag in that browser's localStorage and stops counting you. Reload
-    after; you should get a confirmation popup. Redo it if you clear site data,
-    switch browsers, or use your phone.
-  - Also add your IP under Settings -> Ignore IPs, as a backstop. Home IPs are
-    usually dynamic so this drifts over time; the toggle is the reliable one.
-  - Visits from localhost are ignored automatically, so testing the file on your
-    own machine won't register.
+  - Visit yoursite.com/#toggle-goatcounter once in every browser you use. It sets a
+    flag in that browser and stops counting you. Reload after. Redo it if you clear
+    site data, switch browsers, or use your phone.
+  - Add your IP under Settings -> Ignore IPs as a backstop. Home IPs rotate, so this
+    quietly stops working eventually. The toggle is the reliable one.
+  - Requests from localhost are ignored already, so testing locally won't register.
 -->
 <script data-goatcounter="https://YOURCODE.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
