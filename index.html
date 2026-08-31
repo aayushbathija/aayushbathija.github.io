@@ -37,45 +37,79 @@
   }
 
   .sheet {
-    max-width: 42rem;
+    max-width: 40rem;
     margin: 0 auto;
-    padding: 5.5rem 1.5rem 4rem;
+    padding: 5rem 1.5rem 4rem;
   }
 
   .title {
     font-size: 2.6rem;
     line-height: 1.1;
     font-weight: 400;
-    margin: 0 0 .6rem;
+    margin: 0 0 .5rem;
     letter-spacing: -0.01em;
   }
 
   .standfirst {
     font-size: 1.06rem;
     color: var(--ink-soft);
-    margin: 0 0 2.6rem;
-    max-width: 34rem;
+    margin: 0 0 2.4rem;
+    max-width: 33rem;
   }
 
-  /* the one loud moment: the highlight from your subtitle style, drawn once */
-  .mark { position: relative; color: var(--ink); white-space: nowrap; }
-  .mark::before {
+  /* ---- tabs ---- */
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.6rem;
+    margin-bottom: 2.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tab {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0 0 .55rem;
+    margin: 0;
+    font-family: var(--sans);
+    font-size: .95rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .tab:hover { color: var(--ink); }
+
+  .tab:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+    border-radius: 1px;
+  }
+
+  /* the signature: the active tab sits on the pale wash you use for subtitles */
+  .tab[aria-selected="true"] { color: var(--ink); }
+  .tab[aria-selected="true"]::before {
     content: "";
     position: absolute;
-    left: -.12em; right: -.12em; bottom: .04em;
-    height: .62em;
+    left: -.35em; right: -.35em;
+    top: -.1em;
+    height: 1.45em;
     background: var(--wash);
     z-index: -1;
-    transform-origin: left center;
-    transform: scaleX(0);
-    animation: draw .55s cubic-bezier(.22,.61,.36,1) .35s forwards;
   }
-  @keyframes draw { to { transform: scaleX(1); } }
-  @media (prefers-reduced-motion: reduce) {
-    .mark::before { animation: none; transform: scaleX(1); }
+  .tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--blue);
   }
 
-  section { margin: 0 0 3rem; }
+  /* ---- panels ---- */
+
+  [role="tabpanel"][hidden] { display: none; }
 
   h2 {
     font-family: var(--sans);
@@ -85,48 +119,37 @@
     margin: 0 0 .8rem;
   }
 
-  p { margin: 0 0 1rem; max-width: 34rem; }
+  p { margin: 0 0 1rem; max-width: 33rem; }
   p:last-child { margin-bottom: 0; }
 
-  /* ---- tables, set the way LaTeX booktabs does it:
-         horizontal rules only, no verticals, no zebra stripes ---- */
+  ul { margin: 0; padding: 0; list-style: none; max-width: 33rem; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: .95rem;
-    border-top: 1.5px solid var(--ink);
-    border-bottom: 1.5px solid var(--ink);
+  li {
+    margin: 0 0 1.15rem;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  li:last-child { margin-bottom: 0; }
+  li::before {
+    content: "\2014";
+    position: absolute;
+    left: 0;
+    color: var(--rule);
   }
 
-  thead th {
-    font-family: var(--sans);
-    font-size: .78rem;
-    font-weight: 700;
+  .role { display: block; }
+  .where { color: var(--ink-soft); }
+  .note {
+    display: block;
     color: var(--ink-soft);
-    text-align: left;
-    padding: .45rem 1.2rem .45rem 0;
-    border-bottom: 1px solid var(--ink);
+    font-size: .93rem;
+    line-height: 1.5;
+    margin-top: .12rem;
   }
 
-  td {
-    padding: .7rem 1.2rem .7rem 0;
-    vertical-align: top;
-    border-bottom: 1px solid var(--rule);
-    line-height: 1.45;
-  }
-  tbody tr:last-child td { border-bottom: none; }
-  td:last-child, th:last-child { padding-right: 0; }
-
-  td.what { white-space: nowrap; }
-  td.detail { color: var(--ink-soft); }
-
-  caption {
-    caption-side: bottom;
-    text-align: left;
-    font-size: .85rem;
+  .soon {
     color: var(--ink-soft);
-    padding-top: .6rem;
+    font-style: italic;
   }
 
   a {
@@ -154,22 +177,12 @@
     color: var(--ink-soft);
   }
 
-  /* tables become stacked blocks on a phone, since three columns at 380px
-     is unreadable */
-  @media (max-width: 36rem) {
+  @media (max-width: 34rem) {
     body { font-size: 18px; }
-    .sheet { padding-top: 3.5rem; }
+    .sheet { padding-top: 3.2rem; }
     .title { font-size: 2.05rem; }
-
-    table, tbody, tr, td { display: block; width: 100%; }
-    thead { position: absolute; left: -9999px; }
-    tr {
-      padding: .8rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    tbody tr:last-child { border-bottom: none; }
-    td { border: none; padding: 0 0 .15rem; }
-    td.what { white-space: normal; font-weight: 700; }
+    .tabs { gap: 0 1.1rem; }
+    .tab { font-size: .9rem; }
   }
 </style>
 </head>
@@ -179,12 +192,20 @@
 
   <h1 class="title">Aayush Bathija</h1>
   <p class="standfirst">
-    I&rsquo;m a high school student in California working on
-    <span class="mark">problems in algebraic combinatorics</span>,
-    and I teach mathematics to younger students most weekends.
+    I&rsquo;m a high school student in California working on problems in
+    algebraic combinatorics, and I teach mathematics to younger students most
+    weekends.
   </p>
 
-  <section>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="tab-research"  aria-controls="panel-research"  data-panel="research">Research</button>
+    <button class="tab" role="tab" id="tab-teaching"  aria-controls="panel-teaching"  data-panel="teaching">Teaching</button>
+    <button class="tab" role="tab" id="tab-writing"   aria-controls="panel-writing"   data-panel="writing">Writing</button>
+    <button class="tab" role="tab" id="tab-reading"   aria-controls="panel-reading"   data-panel="reading">Reading</button>
+    <button class="tab" role="tab" id="tab-blog"      aria-controls="panel-blog"      data-panel="blog">Blog</button>
+  </nav>
+
+  <section role="tabpanel" id="panel-research" aria-labelledby="tab-research" tabindex="0">
     <h2>Research</h2>
     <p>
       With Professor Soskin I&rsquo;ve been pushing results on Lorentzian
@@ -197,84 +218,59 @@
     </p>
   </section>
 
-  <section>
+  <section role="tabpanel" id="panel-teaching" aria-labelledby="tab-teaching" tabindex="0" hidden>
     <h2>Teaching</h2>
-    <table>
-      <thead>
-        <tr><th scope="col">Role</th><th scope="col">Where</th><th scope="col">What</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="what">Instructor</td>
-          <td>UCLA Olga Radko Math Circle</td>
-          <td class="detail">Weekly sessions for elementary and middle school students.</td>
-        </tr>
-        <tr>
-          <td class="what">Documentation</td>
-          <td>Agoura Math Circle</td>
-          <td class="detail">One of six maintaining the curriculum archive. I wrote the scripts that migrated it.</td>
-        </tr>
-        <tr>
-          <td class="what">Founder</td>
-          <td>Pure mathematics club</td>
-          <td class="detail">Proof-based material for students who&rsquo;ve run out of competition problems to be interested in.</td>
-        </tr>
-        <tr>
-          <td class="what">President</td>
-          <td>Philosophy Club</td>
-          <td class="detail">Weekly discussion, mostly ethics and epistemology.</td>
-        </tr>
-      </tbody>
-    </table>
+    <ul>
+      <li>
+        <span class="role">Instructor, <span class="where">UCLA Olga Radko Math Circle</span></span>
+        <span class="note">Weekly sessions for elementary and middle school students.</span>
+      </li>
+      <li>
+        <span class="role">Documentation, <span class="where">Agoura Math Circle</span></span>
+        <span class="note">
+          One of six maintaining the curriculum archive. I wrote the scripts that
+          migrated it.
+        </span>
+      </li>
+      <li>
+        <span class="role">Founder, <span class="where">pure mathematics club at my school</span></span>
+        <span class="note">
+          Proof-based material for students who&rsquo;ve run out of competition
+          problems to be interested in.
+        </span>
+      </li>
+      <li>
+        <span class="role">President, <span class="where">Philosophy Club</span></span>
+      </li>
+    </ul>
   </section>
 
-  <section>
-    <h2>Video and writing</h2>
-    <table>
-      <thead>
-        <tr><th scope="col">Series</th><th scope="col">Subject</th><th scope="col">Link</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="what">Non-Euclidean geometry</td>
-          <td class="detail">Hilbert&rsquo;s axioms, and where neutral geometry fails on the sphere.</td>
-          <td><a class="todo" href="#">watch</a></td>
-        </tr>
-        <tr>
-          <td class="what"><em>Analysis&nbsp;I</em></td>
-          <td class="detail">Chapter-by-chapter through Tao, as I read it.</td>
-          <td><a class="todo" href="#">watch</a></td>
-        </tr>
-        <tr>
-          <td class="what">Philosophy commentary</td>
-          <td class="detail">Currently the <em>Republic</em>, a book or two at a time.</td>
-          <td><a class="todo" href="#">watch</a></td>
-        </tr>
-      </tbody>
-    </table>
+  <section role="tabpanel" id="panel-writing" aria-labelledby="tab-writing" tabindex="0" hidden>
+    <h2>Writing and video</h2>
+    <p>
+      I make expository videos, mostly working through whatever I&rsquo;m reading
+      at the time: the failure of the parallel postulate on the sphere, and a
+      chapter-by-chapter series on Tao&rsquo;s <em>Analysis&nbsp;I</em>.
+      <a class="todo" href="#">The channel is here.</a>
+    </p>
+    <p>
+      I also write about philosophy, currently a commentary series on the
+      <em>Republic</em>. <a class="todo" href="#">Essays and videos.</a>
+    </p>
   </section>
 
-  <section>
-    <h2>Coursework and reading</h2>
-    <table>
-      <thead>
-        <tr><th scope="col">Subject</th><th scope="col">Source</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="what">Real analysis</td>
-          <td class="detail">Tao, <em>Analysis&nbsp;I</em> (3rd ed.), self-study</td>
-        </tr>
-        <tr>
-          <td class="what">Ring theory</td>
-          <td class="detail">Course with Mirroslav Yotov, as an on-ramp to algebraic number theory</td>
-        </tr>
-        <tr>
-          <td class="what">Calculus, linear algebra</td>
-          <td class="detail">Dual enrollment</td>
-        </tr>
-      </tbody>
-    </table>
+  <section role="tabpanel" id="panel-reading" aria-labelledby="tab-reading" tabindex="0" hidden>
+    <h2>Reading</h2>
+    <p>
+      Tao&rsquo;s <em>Analysis&nbsp;I</em>, and a ring theory course with
+      Mirroslav Yotov that I&rsquo;m using as an on-ramp to algebraic number
+      theory. Before that, the standard calculus and linear algebra sequence.
+    </p>
+  </section>
+
+  <section role="tabpanel" id="panel-blog" aria-labelledby="tab-blog" tabindex="0" hidden>
+    <h2>Blog</h2>
+    <p class="soon">Coming soon.</p>
   </section>
 
   <footer>
@@ -284,6 +280,45 @@
   </footer>
 
 </main>
+
+<script>
+(function () {
+  var tabs   = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = {};
+  tabs.forEach(function (t) { panels[t.dataset.panel] = document.getElementById('panel-' + t.dataset.panel); });
+
+  function show(name, push) {
+    if (!panels[name]) name = tabs[0].dataset.panel;
+    tabs.forEach(function (t) {
+      var on = t.dataset.panel === name;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panels[t.dataset.panel].hidden = !on;
+    });
+    if (push && history.replaceState) history.replaceState(null, '', '#' + name);
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.dataset.panel, true); });
+  });
+
+  // left/right arrows move between tabs, which is what screen reader users expect
+  document.querySelector('.tabs').addEventListener('keydown', function (e) {
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
+    if (next < 0 && e.key !== 'ArrowLeft') return;
+    if (next === -1) next = tabs.length - 1;
+    if (next >= tabs.length) next = 0;
+    e.preventDefault();
+    tabs[next].focus();
+    show(tabs[next].dataset.panel, true);
+  });
+
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1), false); });
+  show(location.hash.slice(1) || 'research', false);
+})();
+</script>
 
 <!--
   ANALYTICS (private, nothing renders on the page)
@@ -301,6 +336,9 @@
   - Add your IP under Settings -> Ignore IPs as a backstop. Home IPs rotate, so this
     quietly stops working eventually. The toggle is the reliable one.
   - Requests from localhost are ignored already, so testing locally won't register.
+
+  NOTE: tab switches don't fire a new pageview, so the dashboard counts visits to
+  the site, not to each tab.
 -->
 <script data-goatcounter="https://YOURCODE.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
