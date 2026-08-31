@@ -2,6 +2,9 @@
 layout: default
 title: Home
 ---
+<figure class="margin-figure">
+  <img src="{{ '/assets/cube.jpg' | relative_url }}" alt="A scrambled Rubik's cube">
+</figure>
 
 I'm a high school student in California. I do mostly mathematics (including research with Prof. Soskin at UCLA), a fair amount of
 reading on my own, and teaching younger students on weekends.
@@ -17,6 +20,3 @@ philosophy when a book warrants it.
 
 If you have any questions or requests for code, writups, etc. Or just want to chat, the best way to reach me is by email.
 
-<figure class="margin-figure">
-  <img src="{{ '/assets/cube.jpg' | relative_url }}" alt="A scrambled Rubik's cube">
-</figure>
