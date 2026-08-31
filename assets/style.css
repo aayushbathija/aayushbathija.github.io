@@ -199,3 +199,26 @@ footer svg {
   .masthead nav a.here { padding-left: .4rem; }
   h1 { font-size: 1.8rem; }
 }
+
+.margin-figure {
+  float: right;
+  width: 11rem;
+  margin: .3rem 0 1.2rem 2.5rem;
+}
+
+.margin-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.margin-figure figcaption {
+  font-size: .72rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin-top: .4rem;
+}
+
+@media (max-width: 40rem) {
+  .margin-figure { float: none; width: 9rem; margin: 0 0 1.2rem; }
+}
