@@ -23,7 +23,7 @@ nav:
   - title: Blog
     url: /blog/
   - title: CV
-    url: /assets/aayushcv.pdf
+    url: /assets/aayushcv
 
 permalink: /:title/
 markdown: kramdown
